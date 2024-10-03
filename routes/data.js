@@ -16,13 +16,13 @@ router.post('/', async (req, res) => {
 
 router.get('/:slug', async (req, res) => {
     try {
-        const data = await Data.findOne({ slug: req.params.slug });
+        const data = await Data.findOne({ slug: req.params.slug.toLowerCase() });
         if (!data) {
             return res.status(404).json({ message: 'Data not found' });
         }
         res.json(data);
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        res.status(500).json({ error: "server error" });
     }
 });
 
